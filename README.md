@@ -8,14 +8,19 @@ El [Cifrado de Vigenère](https://es.wikipedia.org/wiki/Cifrado_de_Vigen%C3%A8re
 
 ```
 EO, cifrar(texto_plano, llave)
-  texto_plano = pasar_a_minusculas(texto_plano)
-  llave = pasar_a_minusculas(llave)
   texto_encriptado = ""
 
   // Utilizar ciclo FOR desde 0 hasta longitud de texto_plano
   Por cada letra en texto_plano
-    offset = llave[numero_de_letra] - 'a' // Utilizar valores ASCII
+    indice_llave = numero_de_letra % longitud(llave)
+    offset = llave[numero_de_letra]
+
+    // Utilizar valores Unicode
     nueva_letra = texto_plano[numero_de_letra] + offset
     agregar nueva_letra a texto_encriptado
+
+    // incrementar en 1 el numero_de_letra
+    // repetir hasta que numero_de_letra sea igual a
+    // la longitud de texto_plano
 EF, mostrar texto_encriptado
 ```
