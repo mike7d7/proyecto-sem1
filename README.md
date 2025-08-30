@@ -11,6 +11,8 @@ EO, cifrar(texto_plano, llave)
   texto_plano = pasar_a_minusculas(texto_plano)
   llave = pasar_a_minusculas(llave)
   texto_encriptado = ""
+
+  // Utilizar ciclo FOR desde 0 hasta longitud de texto_plano
   Por cada letra en texto_plano
     offset = llave[numero_de_letra] - 'a' // Utilizar valores ASCII
     nueva_letra = texto_plano[numero_de_letra] + offset
