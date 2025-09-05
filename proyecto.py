@@ -19,4 +19,4 @@ def encriptar(texto_a_encriptar, llave):
 texto_a_encriptar = input("Ingresa el texto a encriptar: ")
 llave = input("Ingresa la llave para encriptar: ")
 texto_encriptado = encriptar(texto_a_encriptar, llave)
-print(texto_encriptado)
+print("Texto encriptado: " + texto_encriptado)
