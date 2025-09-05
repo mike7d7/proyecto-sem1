@@ -24,3 +24,22 @@ EO, cifrar(texto_plano, llave)
     // la longitud de texto_plano
 EF, mostrar texto_encriptado
 ```
+
+```
+EO, descifrar(texto_encriptado, llave)
+  texto_desencriptado = ""
+
+  // Utilizar ciclo FOR desde 0 hasta longitud de texto_encriptado
+  Por cada letra en texto_encriptado
+    indice_llave = numero_de_letra % longitud(llave)
+    offset = llave[indice_llave]
+
+    // Utilizar valores Unicode
+    nueva_letra = texto_encriptado[numero_de_letra] - offset
+    agregar nueva_letra a texto_desencriptado
+
+    // incrementar en 1 el numero_de_letra
+    // repetir hasta que numero_de_letra sea igual a
+    // la longitud de texto_plano
+EF, mostrar texto_desencriptado
+```
