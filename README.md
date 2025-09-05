@@ -13,7 +13,7 @@ EO, cifrar(texto_plano, llave)
   // Utilizar ciclo FOR desde 0 hasta longitud de texto_plano
   Por cada letra en texto_plano
     indice_llave = numero_de_letra % longitud(llave)
-    offset = llave[numero_de_letra]
+    offset = llave[indice_llave]
 
     // Utilizar valores Unicode
     nueva_letra = texto_plano[numero_de_letra] + offset
