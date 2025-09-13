@@ -34,10 +34,55 @@ def desencriptar(texto_encriptado, llave):
         texto_desencriptado += chr(nueva_letra)
     return texto_desencriptado
 
-texto_a_encriptar = input("Ingresa el texto a encriptar: ")
-llave = input("Ingresa la llave para encriptar: ")
-texto_encriptado = encriptar(texto_a_encriptar, llave)
-print("Texto encriptado: " + texto_encriptado)
+def menu_inicial():
+    print("")
+    print("1.- Encriptar texto")
+    print("2.- Desencriptar texto")
+    print("3.- Encriptrar múltiples textos")
+    print("4.- Desencriptar múltiples textos")
+    print("5.- Salir")
 
-texto_desencriptado = desencriptar(texto_encriptado, llave)
-print("Texto desencriptado: " + texto_desencriptado)
+def leer_texto_y_llave():
+    texto_a_encriptar = input("Ingresa el texto a encriptar: ")
+    llave = input("Ingresa la llave para encriptar: ")
+    return texto_a_encriptar, llave
+
+while (True):
+    menu_inicial()
+    opcion = int(input("Elige una opción: "))
+    match(opcion):
+        case 1:
+            texto_a_encriptar, llave = leer_texto_y_llave()
+            texto_encriptado = encriptar(texto_a_encriptar, llave)
+            print("Texto encriptado: " + texto_encriptado)
+        case 2:
+            texto_encriptado = input("Ingresa el texto a desencriptar: ")
+            llave = input("Ingresa la llave usada para encriptar: ")
+            texto_desencriptado = desencriptar(texto_encriptado, llave)
+            print("Texto desencriptado: " + texto_desencriptado)
+        case 3:
+            textos = [[], []]
+            while (True):
+                print("")
+                print("1.- Agregar texto")
+                print("2.- Salir")
+                opcion_2 = int(input("Elige una opción: "))
+                match(opcion_2):
+                    case 1:
+                        nuevo_texto, nueva_llave = leer_texto_y_llave()
+                        textos[0].append(nuevo_texto)
+                        textos[1].append(nueva_llave)
+                    case 2:
+                        print(textos)
+                        textos_encriptados = []
+                        for i in range(len(textos)):
+                            texto_encriptado = encriptar(textos[0][i-1], textos[1][i-1])
+                            textos_encriptados.append(texto_encriptado)
+                        print(textos_encriptados)
+                        break
+                    case _:
+                        print("Opción incorrecta")
+        case 5:
+            exit()
+        case _:
+            print("Opción incorrecta")
