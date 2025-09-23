@@ -75,7 +75,7 @@ while (True):
                     case 2:
                         print(textos)
                         textos_encriptados = []
-                        for i in range(len(textos)):
+                        for i in range(0,len(textos),1):
                             texto_encriptado = encriptar(textos[0][i-1], textos[1][i-1])
                             textos_encriptados.append(texto_encriptado)
                         print(textos_encriptados)
