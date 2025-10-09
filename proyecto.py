@@ -76,9 +76,16 @@ while (True):
                         print(textos)
                         textos_encriptados = []
                         for i in range(0,len(textos),1):
-                            texto_encriptado = encriptar(textos[0][i-1], textos[1][i-1])
+                            texto_encriptado = encriptar(textos[0][i], textos[1][i])
                             textos_encriptados.append(texto_encriptado)
                         print(textos_encriptados)
+                        i = 0
+                        print("Texto | Texto Encriptado")
+                        while i < len(textos):
+                            print(f"{textos[0][i]} | {textos_encriptados[i]}")
+                            i += 1
+                    case _:
+                        print("Opción incorrecta")
                         break
                     case _:
                         print("Opción incorrecta")
