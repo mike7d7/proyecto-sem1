@@ -1,4 +1,4 @@
-def encriptar(texto_a_encriptar, llave):
+def encriptar(texto_a_encriptar: str, llave: str):
     """
     (operadores aritméticos, funciones, ciclos)
     Recibe: texto_a_encriptar texto, llave texto
@@ -16,7 +16,7 @@ def encriptar(texto_a_encriptar, llave):
         texto_encriptado += chr(nueva_letra)
     return texto_encriptado
 
-def desencriptar(texto_encriptado, llave):
+def desencriptar(texto_encriptado: str, llave: str):
     """
     (operadores aritméticos, funciones, ciclos)
     Recibe: texto_encriptado texto, llave texto
