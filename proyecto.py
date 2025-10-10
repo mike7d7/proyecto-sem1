@@ -14,6 +14,9 @@ def encriptar(texto_a_encriptar: str, llave: str):
     for i in range(len(texto_a_encriptar)):
         indice_llave = i % len(llave)
         offset = llave[indice_llave]
+
+        # Función ord(), es la función de la librería estándar
+        # que voy a explicar en el README.md
         nueva_letra = ord(texto_a_encriptar[i]) + ord(offset)
         texto_encriptado += chr(nueva_letra)
     return texto_encriptado

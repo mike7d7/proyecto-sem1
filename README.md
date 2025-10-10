@@ -43,3 +43,19 @@ EO, descifrar(texto_encriptado, llave)
     // la longitud de texto_plano
 EF, mostrar texto_desencriptado
 ```
+
+### Función de la librería estándar de Python
+
+Función elegida: `ord()`
+
+La función `ord()` recibe como argumento un caracter, y regresa el número entero que representa al número en el formato Unicode.
+
+Ejemplo:
+
+`ord("π")`
+regresa el valor
+`960`
+el cual podemos verificar que es el valor Unicode de "π" pasando el número a hexadecimal y buscandolo en el [explorador de Unicode](https://www.compart.com/en/unicode/U+03C0).
+`960 -> 3C0`
+
+La función es usada para convertir cada caracter de una string, en un valor al cual se le pueda restar y sumar valores.
