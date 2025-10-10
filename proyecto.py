@@ -104,7 +104,7 @@ while (True):
                         print_and_wait(printable_str)
                         break
                     case _:
-                        print("Opción incorrecta")
+                        print_and_wait("Opción incorrecta")
         case 4:
             textos_des: list[list[str]] = [[], []]
             # El primer arreglo tiene los textos, el segundo las llaves.
@@ -135,7 +135,7 @@ while (True):
                         print_and_wait(printable_str)
                         break
                     case _:
-                        print("Opción incorrecta")
+                        print_and_wait("Opción incorrecta")
         case 5:
             exit()
         case _:
