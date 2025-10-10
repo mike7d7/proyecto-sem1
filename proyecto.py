@@ -59,6 +59,39 @@ def print_and_wait(text: str):
     print("\n" + text)
     _ = input("Presiona enter para continuar...")
 
+def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
+    textos_originales: list[list[str]] = [[], []]
+    # El primer arreglo tiene los textos, el segundo las llaves.
+    # textos = [[texto1, texto2, texto3],
+    #           [llave1, llave2, llave3]]
+    while (True):
+        print("")
+        print("1.- Agregar texto")
+        print("2.- Salir")
+        opcion_2 = int(input("Elige una opción: "))
+        match(opcion_2):
+            case 1:
+                nuevo_texto, nueva_llave = leer_texto_y_llave()
+                textos_originales[0].append(nuevo_texto)
+                textos_originales[1].append(nueva_llave)
+            case 2:
+                print(textos_originales)
+                textos_modificados: list[str] = []
+                for i in range(0,len(textos_originales[0]),1):
+                    texto_encriptado = funcion_a_usar(textos_originales[0][i], textos_originales[1][i])
+                    textos_modificados.append(texto_encriptado)
+                print(textos_modificados)
+
+                printable_str = "Texto Original | Texto " + texto_a_mostrar
+                i = 0
+                while i < len(textos_originales[0]):
+                    printable_str += f"\n{textos_originales[0][i]} | {textos_modificados[i]}"
+                    i += 1
+                print_and_wait(printable_str)
+                break
+            case _:
+                print_and_wait("Opción incorrecta")
+
 while (True):
     menu_inicial()
     opcion = int(input("Elige una opción: "))
@@ -73,68 +106,9 @@ while (True):
             texto_desencriptado = desencriptar(texto_encriptado, llave)
             print_and_wait("Texto desencriptado: " + texto_desencriptado)
         case 3:
-            textos: list[list[str]] = [[], []]
-            # El primer arreglo tiene los textos, el segundo las llaves.
-            # textos = [[texto1, texto2, texto3],
-            #           [llave1, llave2, llave3]]
-            while (True):
-                print("")
-                print("1.- Agregar texto")
-                print("2.- Salir")
-                opcion_2 = int(input("Elige una opción: "))
-                match(opcion_2):
-                    case 1:
-                        nuevo_texto, nueva_llave = leer_texto_y_llave()
-                        textos[0].append(nuevo_texto)
-                        textos[1].append(nueva_llave)
-                    case 2:
-                        print(textos)
-                        textos_encriptados: list[str] = []
-                        for i in range(0,len(textos),1):
-                            texto_encriptado = encriptar(textos[0][i], textos[1][i])
-                            textos_encriptados.append(texto_encriptado)
-                        print(textos_encriptados)
-
-                        printable_str = "Texto | Texto Encriptado"
-                        i = 0
-                        while i < len(textos):
-                            printable_str += f"\n{textos[0][i]} | {textos_encriptados[i]}"
-                            i += 1
-                        print_and_wait(printable_str)
-                        break
-                    case _:
-                        print_and_wait("Opción incorrecta")
+            multiples_textos(encriptar, "Encriptado")
         case 4:
-            textos_des: list[list[str]] = [[], []]
-            # El primer arreglo tiene los textos, el segundo las llaves.
-            # textos_des = [[texto1, texto2, texto3],
-            #               [llave1, llave2, llave3]]
-            while (True):
-                print("")
-                print("1.- Agregar texto")
-                print("2.- Salir")
-                opcion_3 = int(input("Elige una opción: "))
-                match(opcion_3):
-                    case 1:
-                        nuevo_texto2, nueva_llave2 = leer_texto_y_llave()
-                        textos_des[0].append(nuevo_texto2)
-                        textos_des[1].append(nueva_llave2)
-                    case 2:
-                        print(textos_des)
-                        textos_desencriptados: list[str] = []
-                        for i in range(0,len(textos_des),1):
-                            texto_desencriptado = desencriptar(textos_des[0][i], textos_des[1][i])
-                            textos_desencriptados.append(texto_desencriptado)
-
-                        printable_str = "Texto | Texto Encriptado"
-                        i = 0
-                        while i < len(textos_desencriptados):
-                            printable_str += f"\n{textos_des[0][i]} | {textos_desencriptados[i]}"
-                            i += 1
-                        print_and_wait(printable_str)
-                        break
-                    case _:
-                        print_and_wait("Opción incorrecta")
+            multiples_textos(desencriptar, "Desencriptado")
         case 5:
             exit()
         case _:
