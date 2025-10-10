@@ -43,8 +43,8 @@ def menu_inicial():
     print("5.- Salir")
 
 def leer_texto_y_llave():
-    texto_a_encriptar = input("Ingresa el texto a encriptar: ")
-    llave = input("Ingresa la llave para encriptar: ")
+    texto_a_encriptar = input("Ingresa el texto a utilizar: ")
+    llave = input("Ingresa la llave para utilizar: ")
     return texto_a_encriptar, llave
 
 while (True):
