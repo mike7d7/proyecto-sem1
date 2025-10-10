@@ -1,5 +1,4 @@
 from os import system, name
-from string import printable
 
 def encriptar(texto_a_encriptar: str, llave: str):
     """
