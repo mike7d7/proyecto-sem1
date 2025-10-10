@@ -56,8 +56,9 @@ def clear():
         _ = os.system('clear')
 
 def print_and_wait(text: str):
-    print("\n" + text)
-    _ = input("Presiona enter para continuar...")
+    clear()
+    print(text)
+    _ = input("\nPresiona enter para continuar...")
 
 def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
     textos_originales: list[list[str]] = [[], []]
@@ -65,7 +66,7 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
     # textos = [[texto1, texto2, texto3],
     #           [llave1, llave2, llave3]]
     while (True):
-        print("")
+        clear()
         print("1.- Agregar texto")
         print("2.- Salir")
         opcion_2 = int(input("Elige una opción: "))
@@ -75,12 +76,10 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
                 textos_originales[0].append(nuevo_texto)
                 textos_originales[1].append(nueva_llave)
             case 2:
-                print(textos_originales)
                 textos_modificados: list[str] = []
                 for i in range(0,len(textos_originales[0]),1):
                     texto_encriptado = funcion_a_usar(textos_originales[0][i], textos_originales[1][i])
                     textos_modificados.append(texto_encriptado)
-                print(textos_modificados)
 
                 printable_str = "Texto Original | Texto " + texto_a_mostrar
                 i = 0
