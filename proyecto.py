@@ -61,7 +61,7 @@ while (True):
             texto_desencriptado = desencriptar(texto_encriptado, llave)
             print("Texto desencriptado: " + texto_desencriptado)
         case 3:
-            textos = [[], []]
+            textos: list[list[str]] = [[], []]
             # El primer arreglo tiene los textos, el segundo las llaves.
             # textos = [[texto1, texto2, texto3],
             #           [llave1, llave2, llave3]]
@@ -77,7 +77,7 @@ while (True):
                         textos[1].append(nueva_llave)
                     case 2:
                         print(textos)
-                        textos_encriptados = []
+                        textos_encriptados: list[str] = []
                         for i in range(0,len(textos),1):
                             texto_encriptado = encriptar(textos[0][i], textos[1][i])
                             textos_encriptados.append(texto_encriptado)
@@ -91,7 +91,7 @@ while (True):
                     case _:
                         print("Opción incorrecta")
         case 4:
-            textos_des = [[], []]
+            textos_des: list[list[str]] = [[], []]
             # El primer arreglo tiene los textos, el segundo las llaves.
             # textos_des = [[texto1, texto2, texto3],
             #               [llave1, llave2, llave3]]
@@ -107,7 +107,7 @@ while (True):
                         textos_des[1].append(nueva_llave2)
                     case 2:
                         print(textos_des)
-                        textos_desencriptados = []
+                        textos_desencriptados: list[str] = []
                         for i in range(0,len(textos_des),1):
                             texto_desencriptado = desencriptar(textos_des[0][i], textos_des[1][i])
                             textos_desencriptados.append(texto_desencriptado)
