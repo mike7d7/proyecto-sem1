@@ -139,4 +139,4 @@ while (True):
         case 5:
             exit()
         case _:
-            print("Opción incorrecta")
+            print_and_wait("Opción incorrecta")
