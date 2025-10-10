@@ -90,6 +90,32 @@ while (True):
                         break
                     case _:
                         print("Opción incorrecta")
+        case 4:
+            textos_des = [[], []]
+            # El primer arreglo tiene los textos, el segundo las llaves.
+            # textos_des = [[texto1, texto2, texto3],
+            #               [llave1, llave2, llave3]]
+            while (True):
+                print("")
+                print("1.- Agregar texto")
+                print("2.- Salir")
+                opcion_3 = int(input("Elige una opción: "))
+                match(opcion_3):
+                    case 1:
+                        nuevo_texto2, nueva_llave2 = leer_texto_y_llave()
+                        textos_des[0].append(nuevo_texto2)
+                        textos_des[1].append(nueva_llave2)
+                    case 2:
+                        print(textos_des)
+                        textos_desencriptados = []
+                        for i in range(0,len(textos_des),1):
+                            texto_desencriptado = desencriptar(textos_des[0][i], textos_des[1][i])
+                            textos_desencriptados.append(texto_desencriptado)
+                        i = 0
+                        print("Texto Encriptado | Texto Original")
+                        while i < len(textos_desencriptados):
+                            print(f"{textos_des[0][i]} | {textos_desencriptados[i]}")
+                            i += 1
                         break
                     case _:
                         print("Opción incorrecta")
