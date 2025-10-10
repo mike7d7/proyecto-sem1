@@ -1,4 +1,4 @@
-from os import system, name
+import os
 
 def encriptar(texto_a_encriptar: str, llave: str):
     """
@@ -50,10 +50,10 @@ def leer_texto_y_llave():
     return texto_a_encriptar, llave
 
 def clear():
-    if name == 'nt':
-        _ = system('cls')
+    if os.name == 'nt':
+        _ = os.system('cls')
     else:
-        _ = system('clear')
+        _ = os.system('clear')
 
 def print_and_wait(text: str):
     print("\n" + text)
