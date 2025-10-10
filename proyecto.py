@@ -78,13 +78,18 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
             case 2:
                 textos_modificados: list[str] = []
                 for i in range(0,len(textos_originales[0]),1):
-                    texto_encriptado = funcion_a_usar(textos_originales[0][i], textos_originales[1][i])
+                    texto_encriptado = funcion_a_usar(
+                        textos_originales[0][i], textos_originales[1][i]
+                    )
                     textos_modificados.append(texto_encriptado)
 
                 printable_str = "Texto Original | Texto " + texto_a_mostrar
                 i = 0
                 while i < len(textos_originales[0]):
-                    printable_str += f"\n{textos_originales[0][i]} | {textos_modificados[i]}"
+                    printable_str += (
+                        f"\n{textos_originales[0][i]} |"
+                        f"{textos_modificados[i]}"
+                    )
                     i += 1
                 print_and_wait(printable_str)
                 break
