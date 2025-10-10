@@ -36,6 +36,12 @@ def desencriptar(texto_encriptado: str, llave: str):
         texto_desencriptado += chr(nueva_letra)
     return texto_desencriptado
 
+def clear():
+    if os.name == 'nt':
+        _ = os.system('cls')
+    else:
+        _ = os.system('clear')
+
 def menu_inicial():
     clear()
     print("1.- Encriptar texto")
@@ -48,12 +54,6 @@ def leer_texto_y_llave():
     texto_a_encriptar = input("Ingresa el texto a utilizar: ")
     llave = input("Ingresa la llave para utilizar: ")
     return texto_a_encriptar, llave
-
-def clear():
-    if os.name == 'nt':
-        _ = os.system('cls')
-    else:
-        _ = os.system('clear')
 
 def print_and_wait(text: str):
     clear()
