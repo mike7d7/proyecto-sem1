@@ -62,6 +62,9 @@ while (True):
             print("Texto desencriptado: " + texto_desencriptado)
         case 3:
             textos = [[], []]
+            # El primer arreglo tiene los textos, el segundo las llaves.
+            # textos = [[texto1, texto2, texto3],
+            #           [llave1, llave2, llave3]]
             while (True):
                 print("")
                 print("1.- Agregar texto")
