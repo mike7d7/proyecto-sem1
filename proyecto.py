@@ -84,6 +84,7 @@ while (True):
                         while i < len(textos):
                             print(f"{textos[0][i]} | {textos_encriptados[i]}")
                             i += 1
+                        break
                     case _:
                         print("Opción incorrecta")
                         break
