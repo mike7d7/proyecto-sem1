@@ -1,3 +1,6 @@
+from os import system, name
+from string import printable
+
 def encriptar(texto_a_encriptar: str, llave: str):
     """
     (operadores aritméticos, funciones, ciclos)
@@ -35,7 +38,7 @@ def desencriptar(texto_encriptado: str, llave: str):
     return texto_desencriptado
 
 def menu_inicial():
-    print("")
+    clear()
     print("1.- Encriptar texto")
     print("2.- Desencriptar texto")
     print("3.- Encriptrar múltiples textos")
@@ -47,6 +50,16 @@ def leer_texto_y_llave():
     llave = input("Ingresa la llave para utilizar: ")
     return texto_a_encriptar, llave
 
+def clear():
+    if name == 'nt':
+        _ = system('cls')
+    else:
+        _ = system('clear')
+
+def print_and_wait(text: str):
+    print("\n" + text)
+    _ = input("Presiona enter para continuar...")
+
 while (True):
     menu_inicial()
     opcion = int(input("Elige una opción: "))
@@ -54,12 +67,12 @@ while (True):
         case 1:
             texto_a_encriptar, llave = leer_texto_y_llave()
             texto_encriptado = encriptar(texto_a_encriptar, llave)
-            print("Texto encriptado: " + texto_encriptado)
+            print_and_wait("Texto encriptado: " + texto_encriptado)
         case 2:
             texto_encriptado = input("Ingresa el texto a desencriptar: ")
             llave = input("Ingresa la llave usada para encriptar: ")
             texto_desencriptado = desencriptar(texto_encriptado, llave)
-            print("Texto desencriptado: " + texto_desencriptado)
+            print_and_wait("Texto desencriptado: " + texto_desencriptado)
         case 3:
             textos: list[list[str]] = [[], []]
             # El primer arreglo tiene los textos, el segundo las llaves.
@@ -82,11 +95,13 @@ while (True):
                             texto_encriptado = encriptar(textos[0][i], textos[1][i])
                             textos_encriptados.append(texto_encriptado)
                         print(textos_encriptados)
+
+                        printable_str = "Texto | Texto Encriptado"
                         i = 0
-                        print("Texto | Texto Encriptado")
                         while i < len(textos):
-                            print(f"{textos[0][i]} | {textos_encriptados[i]}")
+                            printable_str += f"\n{textos[0][i]} | {textos_encriptados[i]}"
                             i += 1
+                        print_and_wait(printable_str)
                         break
                     case _:
                         print("Opción incorrecta")
@@ -111,11 +126,13 @@ while (True):
                         for i in range(0,len(textos_des),1):
                             texto_desencriptado = desencriptar(textos_des[0][i], textos_des[1][i])
                             textos_desencriptados.append(texto_desencriptado)
+
+                        printable_str = "Texto | Texto Encriptado"
                         i = 0
-                        print("Texto Encriptado | Texto Original")
                         while i < len(textos_desencriptados):
-                            print(f"{textos_des[0][i]} | {textos_desencriptados[i]}")
+                            printable_str += f"\n{textos_des[0][i]} | {textos_desencriptados[i]}"
                             i += 1
+                        print_and_wait(printable_str)
                         break
                     case _:
                         print("Opción incorrecta")
