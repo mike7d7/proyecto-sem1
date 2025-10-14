@@ -41,11 +41,13 @@ def desencriptar(texto_encriptado: str, llave: str):
     Devuelve: texto descifrado.
     """
     texto_desencriptado = ""
-    for i in range(len(texto_encriptado)):
+    i = 0
+    while i < len(texto_encriptado):
         indice_llave = i % len(llave)
         offset = llave[indice_llave]
         nueva_letra = ord(texto_encriptado[i]) - ord(offset)
         texto_desencriptado += chr(nueva_letra)
+        i += 1
     return texto_desencriptado
 
 def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
