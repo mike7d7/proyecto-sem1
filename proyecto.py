@@ -83,7 +83,7 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
                 i = 0
                 while i < len(textos_originales[0]):
                     printable_str += (
-                        f"\n{textos_originales[0][i]} |"
+                        f"\n{textos_originales[0][i]} | "
                         f"{textos_modificados[i]}"
                     )
                     i += 1
