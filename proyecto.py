@@ -21,7 +21,8 @@ def encriptar(txt_a_encriptar: str, llave: str):
     Devuelve: texto cifrado.
     """
     txt_encriptado = ""
-    for i in range(len(txt_a_encriptar)):
+    i = 0
+    while i < len(txt_a_encriptar):
         indice_llave = i % len(llave)
         offset = llave[indice_llave]
 
@@ -29,6 +30,7 @@ def encriptar(txt_a_encriptar: str, llave: str):
         # que voy a explicar en el README.md
         nueva_letra = ord(txt_a_encriptar[i]) + ord(offset)
         txt_encriptado += chr(nueva_letra)
+        i += 1
     return txt_encriptado
 
 def desencriptar(txt_encriptado: str, llave: str):
