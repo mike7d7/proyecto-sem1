@@ -1,0 +1,16 @@
+Sub-Competencia:
+Plantea una situación problema que le permite aplicar y demostrar sus conocimientos de programación (avance 1)
+
+Error original: No especificar manera de implementar ciclos en algoritmo (for/while)
+  Por cada letra en texto_plano
+    indice_llave = numero_de_letra % longitud(llave)
+    offset = llave[indice_llave]
+
+    // Utilizar valores Unicode
+    nueva_letra = texto_plano[numero_de_letra] + offset
+    agregar nueva_letra a texto_encriptado
+
+Cambio realizado: Se agregó un comentario
+  // Utilizar ciclo FOR desde 0 hasta longitud de texto_plano
+
+Líneas de código donde se ve la corrección: 23
