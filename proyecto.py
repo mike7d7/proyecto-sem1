@@ -10,46 +10,46 @@ import sys
 """
 ============== funciones de encriptación y desencriptación  =================
 """
-def encriptar(texto_a_encriptar: str, llave: str):
+def encriptar(txt_a_encriptar: str, llave: str):
     """
     (operadores aritméticos, funciones, ciclos)
-    Recibe: texto_a_encriptar texto, llave texto
+    Recibe: a_encriptar texto, llave texto
     Cifra/Encripta un texto generando una letra nueva en base
     al valor numérico (unicode) de la letra correspondiente en el texto
     original y en la llave, este proceso se hace individualmente para
     cada letra (caracter) en el texto original.
     Devuelve: texto cifrado.
     """
-    texto_encriptado = ""
-    for i in range(len(texto_a_encriptar)):
+    txt_encriptado = ""
+    for i in range(len(txt_a_encriptar)):
         indice_llave = i % len(llave)
         offset = llave[indice_llave]
 
         # Función ord(), es la función de la librería estándar
         # que voy a explicar en el README.md
-        nueva_letra = ord(texto_a_encriptar[i]) + ord(offset)
-        texto_encriptado += chr(nueva_letra)
-    return texto_encriptado
+        nueva_letra = ord(txt_a_encriptar[i]) + ord(offset)
+        txt_encriptado += chr(nueva_letra)
+    return txt_encriptado
 
-def desencriptar(texto_encriptado: str, llave: str):
+def desencriptar(txt_encriptado: str, llave: str):
     """
     (operadores aritméticos, funciones, ciclos)
-    Recibe: texto_encriptado texto, llave texto
+    Recibe: encriptado texto, llave texto
     Desencripta un texto previamente cifrado generando una letra nueva
     en base al valor numérico (unicode) de la letra correspondiente en
     el texto encriptado y en la llave, este proceso se hace
     individualmente para cada letra (caracter) en el texto encriptado.
     Devuelve: texto descifrado.
     """
-    texto_desencriptado = ""
+    desencriptado = ""
     i = 0
-    while i < len(texto_encriptado):
+    while i < len(txt_encriptado):
         indice_llave = i % len(llave)
         offset = llave[indice_llave]
-        nueva_letra = ord(texto_encriptado[i]) - ord(offset)
-        texto_desencriptado += chr(nueva_letra)
+        nueva_letra = ord(txt_encriptado[i]) - ord(offset)
+        desencriptado += chr(nueva_letra)
         i += 1
-    return texto_desencriptado
+    return desencriptado
 
 def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
     """
@@ -78,10 +78,10 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
             case 2:
                 textos_modificados: list[str] = []
                 for i in range(0,len(textos_originales[0]),1):
-                    texto_encriptado = funcion_a_usar(
+                    encriptado = funcion_a_usar(
                         textos_originales[0][i], textos_originales[1][i]
                     )
-                    textos_modificados.append(texto_encriptado)
+                    textos_modificados.append(encriptado)
 
                 printable_str = "Texto Original | Texto " + texto_a_mostrar
                 i = 0
@@ -144,9 +144,9 @@ def leer_texto_y_llave():
     Pide al usuario que ingrese un texto y una llave.
     Devuelve: un texto y una llave (ambos son str).
     """
-    texto_a_encriptar = input("Ingresa el texto a utilizar: ")
+    texto_encriptar = input("Ingresa el texto a utilizar: ")
     llave = input("Ingresa la llave para utilizar: ")
-    return texto_a_encriptar, llave
+    return texto_encriptar, llave
 
 def print_and_wait(text: str):
     """
@@ -169,12 +169,12 @@ while True:
     opcion = verificar_int(opcion_str)
     match(opcion):
         case 1:
-            texto_a_encriptar, llave = leer_texto_y_llave()
-            texto_encriptado = encriptar(texto_a_encriptar, llave)
+            texto_a_encriptar, llave_input = leer_texto_y_llave()
+            texto_encriptado = encriptar(texto_a_encriptar, llave_input)
             print_and_wait("Texto encriptado: " + texto_encriptado)
         case 2:
-            texto_encriptado, llave = leer_texto_y_llave()
-            texto_desencriptado = desencriptar(texto_encriptado, llave)
+            texto_encriptado, llave_input = leer_texto_y_llave()
+            texto_desencriptado = desencriptar(texto_encriptado, llave_input)
             print_and_wait("Texto desencriptado: " + texto_desencriptado)
         case 3:
             multiples_textos(encriptar, "Encriptado")
