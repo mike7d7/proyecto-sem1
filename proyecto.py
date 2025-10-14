@@ -108,8 +108,7 @@ while (True):
             texto_encriptado = encriptar(texto_a_encriptar, llave)
             print_and_wait("Texto encriptado: " + texto_encriptado)
         case 2:
-            texto_encriptado = input("Ingresa el texto a desencriptar: ")
-            llave = input("Ingresa la llave usada para encriptar: ")
+            texto_encriptado, llave = leer_texto_y_llave()
             texto_desencriptado = desencriptar(texto_encriptado, llave)
             print_and_wait("Texto desencriptado: " + texto_desencriptado)
         case 3:
