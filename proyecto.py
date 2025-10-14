@@ -65,7 +65,8 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
         clear()
         print("1.- Agregar texto")
         print("2.- Salir")
-        subopcion = int(input("Elige una opción: "))
+        subopcion_str = input("Elige una opción: ")
+        subopcion = verificar_int(subopcion_str)
         match(subopcion):
             case 1:
                 nuevo_texto, nueva_llave = leer_texto_y_llave()
@@ -95,6 +96,19 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
 """
 ============== funciones de ayuda (helper functions)  =================
 """
+def verificar_int(texto: str) -> int:
+    """
+    Recibe: texto a verificar.
+    Verifica que un str de un input se pueda pasar a int, en caso
+    de que no se pueda, regresa -1 como valor de error.
+    Regresa: el texto convertido en int o -1 en caso de error.
+    """
+    try:
+        num = int(texto)
+        return num
+    except ValueError:
+        return -1
+
 def clear():
     """
     (función de la librería estándar)
@@ -148,7 +162,8 @@ def print_and_wait(text: str):
 """
 while True:
     menu_inicial()
-    opcion = int(input("Elige una opción: "))
+    opcion_str = input("Elige una opción: ")
+    opcion = verificar_int(opcion_str)
     match(opcion):
         case 1:
             texto_a_encriptar, llave = leer_texto_y_llave()
