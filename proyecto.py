@@ -40,12 +40,24 @@ def desencriptar(texto_encriptado: str, llave: str):
     return texto_desencriptado
 
 def clear():
+    """
+    (función de la librería estándar)
+    No recibe argumentos.
+    Usa un comando del sistema para limpiar
+    la consola.
+    No devuelve nada.
+    """
     if os.name == 'nt':
         _ = os.system('cls')
     else:
         _ = os.system('clear')
 
 def menu_inicial():
+    """
+    No recibe nada.
+    Imprime las opciones del menú inicial.
+    No devuelve nada.
+    """
     clear()
     print("1.- Encriptar texto")
     print("2.- Desencriptar texto")
@@ -54,16 +66,35 @@ def menu_inicial():
     print("5.- Salir")
 
 def leer_texto_y_llave():
+    """
+    No recibe nada.
+    Pide al usuario que ingrese un texto y una llave.
+    Devuelve: un texto y una llave (ambos son str).
+    """
     texto_a_encriptar = input("Ingresa el texto a utilizar: ")
     llave = input("Ingresa la llave para utilizar: ")
     return texto_a_encriptar, llave
 
 def print_and_wait(text: str):
+    """
+    Recibe: text (str)
+    Imprime un texto y lo mantiene en pantalla hasta que la tecla 'enter'
+    sea presionada.
+    No devuelve nada.
+    """
     clear()
     print(text)
     _ = input("\nPresiona enter para continuar...")
 
 def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
+    """
+    Recibe: la función que se va a utilizar, un texto a mostrar.
+    Permite la entrada de múltiple pares de textos y llaves, luego
+    aplica la función que se le pasa como argumento con el texto y
+    la llave como argumentos. Facilita la implementación de
+    encriptar y desencriptar múltiples textos.
+    No devuelve nada.
+    """
     textos_originales: list[list[str]] = [[], []]
     # El primer arreglo tiene los textos, el segundo las llaves.
     # textos = [[texto1, texto2, texto3],
