@@ -6,6 +6,9 @@ o desencriptar el texto con la llave proporcionada.
 
 import os
 
+"""
+============== funciones de encriptación y desencriptación  =================
+"""
 def encriptar(texto_a_encriptar: str, llave: str):
     """
     (operadores aritméticos, funciones, ciclos)
@@ -45,6 +48,53 @@ def desencriptar(texto_encriptado: str, llave: str):
         texto_desencriptado += chr(nueva_letra)
     return texto_desencriptado
 
+def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
+    """
+    Recibe: la función que se va a utilizar, un texto a mostrar.
+    Permite la entrada de múltiple pares de textos y llaves, luego
+    aplica la función que se le pasa como argumento con el texto y
+    la llave como argumentos. Facilita la implementación de
+    encriptar y desencriptar múltiples textos.
+    No devuelve nada.
+    """
+    textos_originales: list[list[str]] = [[], []]
+    # El primer arreglo tiene los textos, el segundo las llaves.
+    # textos = [[texto1, texto2, texto3],
+    #           [llave1, llave2, llave3]]
+    while (True):
+        clear()
+        print("1.- Agregar texto")
+        print("2.- Salir")
+        opcion_2 = int(input("Elige una opción: "))
+        match(opcion_2):
+            case 1:
+                nuevo_texto, nueva_llave = leer_texto_y_llave()
+                textos_originales[0].append(nuevo_texto)
+                textos_originales[1].append(nueva_llave)
+            case 2:
+                textos_modificados: list[str] = []
+                for i in range(0,len(textos_originales[0]),1):
+                    texto_encriptado = funcion_a_usar(
+                        textos_originales[0][i], textos_originales[1][i]
+                    )
+                    textos_modificados.append(texto_encriptado)
+
+                printable_str = "Texto Original | Texto " + texto_a_mostrar
+                i = 0
+                while i < len(textos_originales[0]):
+                    printable_str += (
+                        f"\n{textos_originales[0][i]} |"
+                        f"{textos_modificados[i]}"
+                    )
+                    i += 1
+                print_and_wait(printable_str)
+                break
+            case _:
+                print_and_wait("Opción incorrecta")
+
+"""
+============== funciones de ayuda (helper functions)  =================
+"""
 def clear():
     """
     (función de la librería estándar)
@@ -92,50 +142,10 @@ def print_and_wait(text: str):
     print(text)
     _ = input("\nPresiona enter para continuar...")
 
-def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
-    """
-    Recibe: la función que se va a utilizar, un texto a mostrar.
-    Permite la entrada de múltiple pares de textos y llaves, luego
-    aplica la función que se le pasa como argumento con el texto y
-    la llave como argumentos. Facilita la implementación de
-    encriptar y desencriptar múltiples textos.
-    No devuelve nada.
-    """
-    textos_originales: list[list[str]] = [[], []]
-    # El primer arreglo tiene los textos, el segundo las llaves.
-    # textos = [[texto1, texto2, texto3],
-    #           [llave1, llave2, llave3]]
-    while (True):
-        clear()
-        print("1.- Agregar texto")
-        print("2.- Salir")
-        opcion_2 = int(input("Elige una opción: "))
-        match(opcion_2):
-            case 1:
-                nuevo_texto, nueva_llave = leer_texto_y_llave()
-                textos_originales[0].append(nuevo_texto)
-                textos_originales[1].append(nueva_llave)
-            case 2:
-                textos_modificados: list[str] = []
-                for i in range(0,len(textos_originales[0]),1):
-                    texto_encriptado = funcion_a_usar(
-                        textos_originales[0][i], textos_originales[1][i]
-                    )
-                    textos_modificados.append(texto_encriptado)
 
-                printable_str = "Texto Original | Texto " + texto_a_mostrar
-                i = 0
-                while i < len(textos_originales[0]):
-                    printable_str += (
-                        f"\n{textos_originales[0][i]} |"
-                        f"{textos_modificados[i]}"
-                    )
-                    i += 1
-                print_and_wait(printable_str)
-                break
-            case _:
-                print_and_wait("Opción incorrecta")
-
+"""
+============== Main =================
+"""
 while (True):
     menu_inicial()
     opcion = int(input("Elige una opción: "))
