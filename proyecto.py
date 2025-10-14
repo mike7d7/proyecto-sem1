@@ -1,3 +1,9 @@
+"""
+Encriptador y desencriptador de Cifrado de Vigenère.
+El programa pide un texto y una llave, puede encriptar
+o desencriptar el texto con la llave proporcionada.
+"""
+
 import os
 
 def encriptar(texto_a_encriptar: str, llave: str):
