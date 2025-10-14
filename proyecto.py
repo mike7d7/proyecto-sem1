@@ -65,8 +65,8 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
         clear()
         print("1.- Agregar texto")
         print("2.- Salir")
-        opcion_2 = int(input("Elige una opción: "))
-        match(opcion_2):
+        subopcion = int(input("Elige una opción: "))
+        match(subopcion):
             case 1:
                 nuevo_texto, nueva_llave = leer_texto_y_llave()
                 textos_originales[0].append(nuevo_texto)
