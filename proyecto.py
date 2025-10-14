@@ -5,6 +5,7 @@ o desencriptar el texto con la llave proporcionada.
 """
 
 import os
+import sys
 
 """
 ============== funciones de encriptación y desencriptación  =================
@@ -180,6 +181,6 @@ while True:
         case 4:
             multiples_textos(desencriptar, "Desencriptado")
         case 5:
-            exit()
+            sys.exit()
         case _:
             print_and_wait("Opción incorrecta")
