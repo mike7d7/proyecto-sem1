@@ -61,7 +61,7 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
     # El primer arreglo tiene los textos, el segundo las llaves.
     # textos = [[texto1, texto2, texto3],
     #           [llave1, llave2, llave3]]
-    while (True):
+    while True:
         clear()
         print("1.- Agregar texto")
         print("2.- Salir")
@@ -146,7 +146,7 @@ def print_and_wait(text: str):
 """
 ============== Main =================
 """
-while (True):
+while True:
     menu_inicial()
     opcion = int(input("Elige una opción: "))
     match(opcion):
