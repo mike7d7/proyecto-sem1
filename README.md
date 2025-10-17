@@ -69,3 +69,13 @@ el cual podemos verificar que es el valor Unicode de "π" pasando el número a h
 `960 -> 3C0`
 
 La función es usada para convertir cada caracter de una string, en un valor al cual se le pueda restar y sumar valores.
+
+### Imports
+
+El programa usa dos imports, `os` y `sys`
+
+El primero se utiliza en la función `clear()`, la cual limpia la consola utilizando un comando del sistema.
+En esta función se usa el atributo `os.name` para identificar si el sistema operativo utilizado para ejecutar el programa es Windows, si esto es verdadero
+se utiliza el comando `cls` para limpiar la consola, en caso de que no sea Windows, se usa el comando `clear`
+
+`sys` es utilizado en Main, en donde es utilizado cuando el usuario ingresa la opción 5, la cual usa la función `sys.exit()` para cerrar el programa.
