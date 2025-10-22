@@ -18,7 +18,7 @@ def encriptar(txt_a_encriptar: str, llave: str):
     al valor numérico (unicode) de la letra correspondiente en el texto
     original y en la llave, este proceso se hace individualmente para
     cada letra (caracter) en el texto original.
-    Devuelve: texto cifrado.
+    Devuelve: texto cifrado, si los valores son válidos.
     """
     txt_encriptado = ""
     i = 0
@@ -28,10 +28,14 @@ def encriptar(txt_a_encriptar: str, llave: str):
 
         # Función ord(), es la función de la librería estándar
         # que voy a explicar en el README.md
-        nueva_letra = ord(txt_a_encriptar[i]) + ord(offset)
+        nueva_letra = suma_verificada(ord(txt_a_encriptar[i]), ord(offset))
+        if nueva_letra == -1:
+            return ("Error en los valores ingresados, el resultado está" +
+               " fuera de valores Unicode", False)
+
         txt_encriptado += chr(nueva_letra)
         i += 1
-    return txt_encriptado
+    return txt_encriptado, True
 
 def desencriptar(txt_encriptado: str, llave: str):
     """
@@ -41,17 +45,22 @@ def desencriptar(txt_encriptado: str, llave: str):
     en base al valor numérico (unicode) de la letra correspondiente en
     el texto encriptado y en la llave, este proceso se hace
     individualmente para cada letra (caracter) en el texto encriptado.
-    Devuelve: texto descifrado.
+    Devuelve: texto descifrado, si los valores son válidos.
     """
     desencriptado = ""
     i = 0
     while i < len(txt_encriptado):
         indice_llave = i % len(llave)
         offset = llave[indice_llave]
-        nueva_letra = ord(txt_encriptado[i]) - ord(offset)
+
+        nueva_letra = resta_verificada(ord(txt_encriptado[i]), ord(offset))
+        if nueva_letra == -1:
+            return ("Error en los valores ingresados, el resultado está" +
+               " fuera de valores Unicode", False)
+
         desencriptado += chr(nueva_letra)
         i += 1
-    return desencriptado
+    return desencriptado, True
 
 def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
     """
@@ -80,20 +89,27 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
             case 2:
                 textos_modificados: list[str] = []
                 for i in range(0,len(textos_originales[0]),1):
-                    encriptado = funcion_a_usar(
+                    txt_modificado, valido = funcion_a_usar(
                         textos_originales[0][i], textos_originales[1][i]
                     )
-                    textos_modificados.append(encriptado)
+                    if not valido:
+                        print_and_wait(txt_modificado)
+                        break
+                    textos_modificados.append(txt_modificado)
 
-                printable_str = "Texto Original | Texto " + texto_a_mostrar
-                i = 0
-                while i < len(textos_originales[0]):
-                    printable_str += (
-                        f"\n{textos_originales[0][i]} | "
-                        f"{textos_modificados[i]}"
-                    )
-                    i += 1
-                print_and_wait(printable_str)
+                # 'else' solo ejecuta el código si el 'for' terminó de ejecutarse
+                # sin usar 'break'
+                else:
+                    printable_str = ("Texto Original | Texto "
+                        + texto_a_mostrar)
+                    i = 0
+                    while i < len(textos_originales[0]):
+                        printable_str += (
+                            f"\n{textos_originales[0][i]} | "
+                            f"{textos_modificados[i]}"
+                        )
+                        i += 1
+                    print_and_wait(printable_str)
                 break
             case _:
                 print_and_wait("Opción incorrecta")
@@ -101,6 +117,34 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
 """
 ============== funciones de ayuda (helper functions)  =================
 """
+def suma_verificada(valor1: int, valor2: int):
+    """
+    Recibe: dos valores enteros a sumar.
+    Realiza la suma y verifica que se encuentre dentro de los
+    valores Unicode válidos (0x00 a 0x110000).
+    Regresa: valor de la suma o -1, dependiendo si el resultado
+    es un valor Unicode válido o no.
+    """
+    suma = valor1 + valor2
+    if suma >= 0x110000:
+        return -1
+    else:
+        return suma
+
+def resta_verificada(valor1: int, valor2: int):
+    """
+    Recibe: dos valores enteros a restar.
+    Realiza la resta y verifica que se encuentre dentro de los
+    valores Unicode válidos (0x00 a 0x110000).
+    Regresa: valor de la suma o -1, dependiendo si el resultado
+    es un valor Unicode válido o no.
+    """
+    resta = valor1 - valor2
+    if resta < 0:
+        return -1
+    else:
+        return resta
+
 def verificar_int(texto: str) -> int:
     """
     Recibe: texto a verificar.
@@ -172,12 +216,22 @@ while True:
     match(opcion):
         case 1:
             texto_a_encriptar, llave_input = leer_texto_y_llave()
-            texto_encriptado = encriptar(texto_a_encriptar, llave_input)
-            print_and_wait("Texto encriptado: " + texto_encriptado)
+            texto_encriptado, valido = encriptar(texto_a_encriptar, llave_input)
+            # si la funcion regresa 'valido' como 'False', el mensaje de error
+            # está en texto_encriptado
+            if not valido:
+                print_and_wait(texto_encriptado)
+            else:
+                print_and_wait("Texto encriptado: " + texto_encriptado)
         case 2:
             texto_encriptado, llave_input = leer_texto_y_llave()
-            texto_desencriptado = desencriptar(texto_encriptado, llave_input)
-            print_and_wait("Texto desencriptado: " + texto_desencriptado)
+            texto_desencriptado, valido = desencriptar(texto_encriptado, llave_input)
+            # si la funcion regresa 'valido' como 'False', el mensaje de error
+            # está en texto_desencriptado
+            if not valido:
+                print_and_wait(texto_desencriptado)
+            else:
+                print_and_wait("Texto desencriptado: " + texto_desencriptado)
         case 3:
             multiples_textos(encriptar, "Encriptado")
         case 4:
