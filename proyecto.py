@@ -6,6 +6,7 @@ o desencriptar el texto con la llave proporcionada.
 
 import os
 import sys
+import base64
 
 """
 ============== funciones de encriptación y desencriptación  =================
@@ -35,7 +36,8 @@ def encriptar(txt_a_encriptar: str, llave: str):
 
         txt_encriptado += chr(nueva_letra)
         i += 1
-    return txt_encriptado, True
+    txt_encriptado2 = base64.b64encode(txt_encriptado.encode('utf-8')).decode('utf-8')
+    return txt_encriptado2, True
 
 def desencriptar(txt_encriptado: str, llave: str):
     """
@@ -47,6 +49,7 @@ def desencriptar(txt_encriptado: str, llave: str):
     individualmente para cada letra (caracter) en el texto encriptado.
     Devuelve: texto descifrado, si los valores son válidos.
     """
+    txt_encriptado = base64.b64decode(txt_encriptado).decode('utf-8')
     desencriptado = ""
     i = 0
     while i < len(txt_encriptado):
@@ -222,7 +225,7 @@ while True:
             if not valido:
                 print_and_wait(texto_encriptado)
             else:
-                print_and_wait("Texto encriptado: " + texto_encriptado)
+                print_and_wait("Texto encriptado: " + str(texto_encriptado))
         case 2:
             texto_encriptado, llave_input = leer_texto_y_llave()
             texto_desencriptado, valido = desencriptar(texto_encriptado, llave_input)
