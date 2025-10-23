@@ -49,7 +49,11 @@ def desencriptar(txt_encriptado: str, llave: str):
     individualmente para cada letra (caracter) en el texto encriptado.
     Devuelve: texto descifrado, si los valores son válidos.
     """
-    txt_encriptado = base64.b64decode(txt_encriptado).decode('utf-8')
+    try:
+        txt_encriptado = base64.b64decode(txt_encriptado).decode('utf-8')
+    except ValueError:
+        return ("Error en los valores ingresados, el texto encriptado" +
+                " no fue generado con este programa", False)
     desencriptado = ""
     i = 0
     while i < len(txt_encriptado):
