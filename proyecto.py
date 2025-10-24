@@ -13,12 +13,15 @@ import base64
 """
 def encriptar(txt_a_encriptar: str, llave: str):
     """
-    (operadores aritméticos, funciones, ciclos)
+    (operadores aritméticos, funciones, ciclos, condicionales,
+    función librería estándar)
     Recibe: a_encriptar texto, llave texto
     Cifra/Encripta un texto generando una letra nueva en base
     al valor numérico (unicode) de la letra correspondiente en el texto
     original y en la llave, este proceso se hace individualmente para
     cada letra (caracter) en el texto original.
+    Una vez cifrado, codifica el texto en base 64 para evitar
+    problemas con caracteres Unicode invisibles o de tamaño 0.
     Devuelve: texto cifrado, si los valores son válidos.
     """
     txt_encriptado = ""
@@ -48,7 +51,8 @@ def encriptar(txt_a_encriptar: str, llave: str):
 
 def desencriptar(txt_encriptado: str, llave: str):
     """
-    (operadores aritméticos, funciones, ciclos)
+    (operadores aritméticos, funciones, ciclos, condicionales,
+    funciones librería estándar)
     Recibe: encriptado texto, llave texto
     Desencripta un texto previamente cifrado generando una letra nueva
     en base al valor numérico (unicode) de la letra correspondiente en
@@ -78,6 +82,7 @@ def desencriptar(txt_encriptado: str, llave: str):
 
 def multiples_textos(funcion_a_usar, texto_a_mostrar: str, texto_input: str):
     """
+    (listas, listas anidadas, condicionales, ciclos, funciones)
     Recibe: la función que se va a utilizar, un texto a mostrar.
     Permite la entrada de múltiple pares de textos y llaves, luego
     aplica la función que se le pasa como argumento con el texto y
@@ -133,6 +138,7 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str, texto_input: str):
 """
 def suma_verificada(valor1: int, valor2: int):
     """
+    (operadores, condicionales)
     Recibe: dos valores enteros a sumar.
     Realiza la suma y verifica que se encuentre dentro de los
     valores Unicode válidos (0x00 a 0x110000).
@@ -148,6 +154,7 @@ def suma_verificada(valor1: int, valor2: int):
 
 def resta_verificada(valor1: int, valor2: int):
     """
+    (operadores, condicionales)
     Recibe: dos valores enteros a restar.
     Realiza la resta y verifica que se encuentre dentro de los
     valores Unicode válidos (0x00 a 0x110000).
@@ -175,7 +182,7 @@ def verificar_int(texto: str) -> int:
 
 def clear():
     """
-    (función de la librería estándar)
+    (función de la librería estándar, condicionales)
     No recibe argumentos.
     Usa un comando del sistema para limpiar
     la consola.
@@ -188,6 +195,7 @@ def clear():
 
 def menu_inicial():
     """
+    (funciones)
     No recibe nada.
     Imprime las opciones del menú inicial.
     No devuelve nada.
@@ -201,6 +209,7 @@ def menu_inicial():
 
 def leer_texto_y_llave(texto_a_mostrar):
     """
+    (variables, cadenas)
     No recibe nada.
     Pide al usuario que ingrese un texto y una llave.
     Devuelve: un texto y una llave (ambos son str).
@@ -214,6 +223,7 @@ def leer_texto_y_llave(texto_a_mostrar):
 
 def print_and_wait(text: str):
     """
+    (funciones)
     Recibe: text (str)
     Imprime un texto y lo mantiene en pantalla hasta que la tecla 'enter'
     sea presionada.
