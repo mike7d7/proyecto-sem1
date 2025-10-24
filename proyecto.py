@@ -24,8 +24,8 @@ def encriptar(txt_a_encriptar: str, llave: str):
     txt_encriptado = ""
     i = 0
     if len(llave) == 0:
-        return ("Error en los valores ingresados, la llave" +
-               " no puede estar vacía", False)
+        return ("Error en los valores ingresados, la llave"
+                + " no puede estar vacía", False)
 
     while i < len(txt_a_encriptar):
         indice_llave = i % len(llave)
@@ -35,8 +35,8 @@ def encriptar(txt_a_encriptar: str, llave: str):
         # que voy a explicar en el README.md
         nueva_letra = suma_verificada(ord(txt_a_encriptar[i]), ord(offset))
         if nueva_letra == -1:
-            return ("Error en los valores ingresados, el resultado está" +
-               " fuera de valores Unicode", False)
+            return ("Error en los valores ingresados, el resultado está"
+                    + " fuera de valores Unicode", False)
 
         txt_encriptado += chr(nueva_letra)
         i += 1
@@ -59,8 +59,8 @@ def desencriptar(txt_encriptado: str, llave: str):
     try:
         txt_encriptado = base64.b64decode(txt_encriptado).decode('utf-8')
     except ValueError:
-        return ("Error en los valores ingresados, el texto encriptado" +
-                " no fue generado con este programa", False)
+        return ("Error en los valores ingresados, el texto encriptado"
+                + " no fue generado con este programa", False)
     desencriptado = ""
     i = 0
     while i < len(txt_encriptado):
@@ -69,8 +69,8 @@ def desencriptar(txt_encriptado: str, llave: str):
 
         nueva_letra = resta_verificada(ord(txt_encriptado[i]), ord(offset))
         if nueva_letra == -1:
-            return ("Error en los valores ingresados, el resultado está" +
-               " fuera de valores Unicode", False)
+            return ("Error en los valores ingresados, el resultado está"
+                    + " fuera de valores Unicode", False)
 
         desencriptado += chr(nueva_letra)
         i += 1
