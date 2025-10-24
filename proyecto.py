@@ -40,6 +40,8 @@ def encriptar(txt_a_encriptar: str, llave: str):
 
         txt_encriptado += chr(nueva_letra)
         i += 1
+    # Codificamos el texto encriptado en base 64 para evitar problemas con caracteres
+    # Unicode invisibles o de tamaño 0
     txt_encriptado2 = base64.b64encode(txt_encriptado.encode('utf-8')).decode('utf-8')
     return txt_encriptado2, True
 
@@ -73,7 +75,7 @@ def desencriptar(txt_encriptado: str, llave: str):
         i += 1
     return desencriptado, True
 
-def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
+def multiples_textos(funcion_a_usar, texto_a_mostrar: str, texto_input: str):
     """
     Recibe: la función que se va a utilizar, un texto a mostrar.
     Permite la entrada de múltiple pares de textos y llaves, luego
@@ -94,7 +96,7 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str):
         subopcion = verificar_int(subopcion_str)
         match(subopcion):
             case 1:
-                nuevo_texto, nueva_llave = leer_texto_y_llave()
+                nuevo_texto, nueva_llave = leer_texto_y_llave(texto_input)
                 textos_originales[0].append(nuevo_texto)
                 textos_originales[1].append(nueva_llave)
             case 2:
@@ -195,14 +197,14 @@ def menu_inicial():
     print("4.- Desencriptar múltiples textos")
     print("5.- Salir")
 
-def leer_texto_y_llave():
+def leer_texto_y_llave(texto_a_mostrar):
     """
     No recibe nada.
     Pide al usuario que ingrese un texto y una llave.
     Devuelve: un texto y una llave (ambos son str).
     """
-    texto_encriptar = input("Ingresa el texto a utilizar: ")
-    llave = input("Ingresa la llave para utilizar: ")
+    texto_encriptar = input("Ingresa el texto a " + texto_a_mostrar + ": ")
+    llave = input("Ingresa la llave para " + texto_a_mostrar + ": ")
     return texto_encriptar, llave
 
 def print_and_wait(text: str):
@@ -226,7 +228,7 @@ while True:
     opcion = verificar_int(opcion_str)
     match(opcion):
         case 1:
-            texto_a_encriptar, llave_input = leer_texto_y_llave()
+            texto_a_encriptar, llave_input = leer_texto_y_llave("encriptar")
             texto_encriptado, valido = encriptar(texto_a_encriptar, llave_input)
             # si la funcion regresa 'valido' como 'False', el mensaje de error
             # está en texto_encriptado
@@ -235,7 +237,7 @@ while True:
             else:
                 print_and_wait("Texto encriptado: " + str(texto_encriptado))
         case 2:
-            texto_encriptado, llave_input = leer_texto_y_llave()
+            texto_encriptado, llave_input = leer_texto_y_llave("desencriptar")
             texto_desencriptado, valido = desencriptar(texto_encriptado, llave_input)
             # si la funcion regresa 'valido' como 'False', el mensaje de error
             # está en texto_desencriptado
@@ -244,9 +246,9 @@ while True:
             else:
                 print_and_wait("Texto desencriptado: " + texto_desencriptado)
         case 3:
-            multiples_textos(encriptar, "Encriptado")
+            multiples_textos(encriptar, "Encriptado", "encriptar")
         case 4:
-            multiples_textos(desencriptar, "Desencriptado")
+            multiples_textos(desencriptar, "Desencriptado", "desencriptar")
         case 5:
             sys.exit()
         case _:
