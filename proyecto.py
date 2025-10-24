@@ -40,9 +40,10 @@ def encriptar(txt_a_encriptar: str, llave: str):
 
         txt_encriptado += chr(nueva_letra)
         i += 1
-    # Codificamos el texto encriptado en base 64 para evitar problemas con caracteres
-    # Unicode invisibles o de tamaño 0
-    txt_encriptado2 = base64.b64encode(txt_encriptado.encode('utf-8')).decode('utf-8')
+    # Codificamos el texto encriptado en base 64 para evitar problemas con
+    # caracteres Unicode invisibles o de tamaño 0
+    txt_encriptado2 = base64.b64encode(txt_encriptado.encode('utf-8')) \
+                      .decode('utf-8')
     return txt_encriptado2, True
 
 def desencriptar(txt_encriptado: str, llave: str):
@@ -110,8 +111,8 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str, texto_input: str):
                         break
                     textos_modificados.append(txt_modificado)
 
-                # 'else' solo ejecuta el código si el 'for' terminó de ejecutarse
-                # sin usar 'break'
+                # 'else' solo ejecuta el código si el 'for' terminó de
+                # ejecutarse sin usar 'break'
                 else:
                     printable_str = ("Texto Original | Texto "
                         + texto_a_mostrar)
@@ -233,7 +234,8 @@ while True:
     match(opcion):
         case 1:
             texto_a_encriptar, llave_input = leer_texto_y_llave("encriptar")
-            texto_encriptado, valido = encriptar(texto_a_encriptar, llave_input)
+            texto_encriptado, valido = encriptar(texto_a_encriptar,
+                                                 llave_input)
             # si la funcion regresa 'valido' como 'False', el mensaje de error
             # está en texto_encriptado
             if not valido:
@@ -242,7 +244,8 @@ while True:
                 print_and_wait("Texto encriptado: " + str(texto_encriptado))
         case 2:
             texto_encriptado, llave_input = leer_texto_y_llave("desencriptar")
-            texto_desencriptado, valido = desencriptar(texto_encriptado, llave_input)
+            texto_desencriptado, valido = desencriptar(texto_encriptado,
+                                                       llave_input)
             # si la funcion regresa 'valido' como 'False', el mensaje de error
             # está en texto_desencriptado
             if not valido:
