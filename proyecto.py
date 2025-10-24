@@ -23,6 +23,10 @@ def encriptar(txt_a_encriptar: str, llave: str):
     """
     txt_encriptado = ""
     i = 0
+    if len(llave) == 0:
+        return ("Error en los valores ingresados, la llave" +
+               " no puede estar vacía", False)
+
     while i < len(txt_a_encriptar):
         indice_llave = i % len(llave)
         offset = llave[indice_llave]
