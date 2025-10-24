@@ -108,6 +108,8 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str, texto_input: str):
             case 2:
                 textos_modificados: list[str] = []
                 for i in range(0,len(textos_originales[0]),1):
+                    # funcion_a_usar() puede ser la función encriptar()
+                    # o la función desencriptar()
                     txt_modificado, valido = funcion_a_usar(
                         textos_originales[0][i], textos_originales[1][i]
                     )
@@ -117,7 +119,7 @@ def multiples_textos(funcion_a_usar, texto_a_mostrar: str, texto_input: str):
                     textos_modificados.append(txt_modificado)
 
                 # 'else' solo ejecuta el código si el 'for' terminó de
-                # ejecutarse sin usar 'break'
+                # ejecutarse sin usar 'break'.
                 else:
                     printable_str = ("Texto Original | Texto "
                         + texto_a_mostrar)
