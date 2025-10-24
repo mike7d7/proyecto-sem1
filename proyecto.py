@@ -204,9 +204,12 @@ def leer_texto_y_llave(texto_a_mostrar):
     Pide al usuario que ingrese un texto y una llave.
     Devuelve: un texto y una llave (ambos son str).
     """
-    texto_encriptar = input("Ingresa el texto a " + texto_a_mostrar + ": ")
-    llave = input("Ingresa la llave para " + texto_a_mostrar + ": ")
-    return texto_encriptar, llave
+    texto_input_utilizar = "Ingresa el texto a " + texto_a_mostrar + ": "
+    texto_input_llave = "Ingresa la llave para " + texto_a_mostrar + ": "
+
+    texto_utilizar = input(texto_input_utilizar)
+    llave = input(texto_input_llave)
+    return texto_utilizar, llave
 
 def print_and_wait(text: str):
     """
