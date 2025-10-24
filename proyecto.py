@@ -138,8 +138,9 @@ def suma_verificada(valor1: int, valor2: int):
     Regresa: valor de la suma o -1, dependiendo si el resultado
     es un valor Unicode válido o no.
     """
+    UNICODE_MAX_VAL = 0x110000
     suma = valor1 + valor2
-    if suma >= 0x110000:
+    if suma >= UNICODE_MAX_VAL:
         return -1
     else:
         return suma
